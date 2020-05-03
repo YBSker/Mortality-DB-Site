@@ -1,19 +1,25 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="mainStyle.css">
+    <!--    <style>-->
+    <!--        body {-->
+    <!--            background-image: url("https://wpamelia.com/wp-content/uploads/2019/02/astronomy-constellation-dark-998641.jpg");-->
+    <!--        }-->
+    <!--    </style>-->
 </head>
 
-<body>
+<body class="background">
 
 <?php
 include 'sidebar.html';
 ?>
-<!--Div for Home filler text-->
-<div class="home fade-in">
-    <h2>Mortality or smth</h2>
-    </p>
+<div class="center">
+    <!--Div for Home filler text-->
+    <div class="general fade-in">
+        <h2>Mortality or smth</h2>
+        </p>
+    </div>
 </div>
-
 
 
 <!-- Query to show raw score content (this is an html comment)  -->

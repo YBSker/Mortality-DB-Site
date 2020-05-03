@@ -1,7 +1,7 @@
 /*SideNav CSS*/
 .sidenav {
     height: 100%;
-    width: 18%;
+    width: 200px;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -31,10 +31,20 @@
     color:#E62C33;
 }
 
-.home {
+.general {
     /*YOU WILL BASICALLY NEED THIS MARGIN-LEFT EVERYWHERE SO YOU DO NOT GET COVERED BY THE BAR*/
-    margin-left: 18%; /* Same as the width of the sidenav */
+    margin-left: 200px;/* Same as the width of the sidenav */
     font-family: "Nunito Sans",sans-serif!important;
+    color:#fff;
+}
+
+.background {
+    background-image: url("https://wpamelia.com/wp-content/uploads/2019/02/astronomy-constellation-dark-998641.jpg");
+}
+
+.center {
+
+    text-align: center;
 }
 
 /*Fade in utility*/
