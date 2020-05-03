@@ -1,0 +1,91 @@
+/*SideNav CSS*/
+.sidenav {
+    height: 100%;
+    width: 18%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #191919;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.sidenav a {
+    float:right;
+    margin-right:20%;
+    text-align:right;
+    clear:both;
+    margin-top:60px;
+    /*font-family: "Nunito Sans",sans-serif!important;*/
+    font-family: 'PT Sans', sans-serif;;
+    color:#fff;
+    text-transform:uppercase;
+    font-weight:400;
+    font-size:16px;
+    letter-spacing:1.5px;
+    text-decoration: none
+}
+
+.sidenav a:hover {
+    color:#E62C33;
+}
+
+.home {
+    /*YOU WILL BASICALLY NEED THIS MARGIN-LEFT EVERYWHERE SO YOU DO NOT GET COVERED BY THE BAR*/
+    margin-left: 18%; /* Same as the width of the sidenav */
+    font-family: "Nunito Sans",sans-serif!important;
+}
+
+/*Fade in utility*/
+.fade-in {
+    animation: fadeIn ease 5s;
+    -webkit-animation: fadeIn ease 5s;
+    -moz-animation: fadeIn ease 5s;
+    -o-animation: fadeIn ease 5s;
+    -ms-animation: fadeIn ease 5s;
+}
+@keyframes fadeIn {
+    0% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
+
+@-moz-keyframes fadeIn {
+    0% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
+
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
+
+@-o-keyframes fadeIn {
+    0% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
+
+@-ms-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
