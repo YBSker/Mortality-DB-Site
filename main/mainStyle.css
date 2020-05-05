@@ -10,12 +10,12 @@
     left: 0;
     background-color: #191919;
     overflow-x: hidden;
-    padding-top: 2vw;
+    padding-top: 25px;
 }
 
 .sidenav a {
     float:right;
-    margin-right:20%;
+    margin-right:15%;
     text-align:right;
     clear:both;
     margin-top:60px;
