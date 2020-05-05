@@ -1,7 +1,11 @@
 /*SideNav CSS*/
 .sidenav {
     height: 100%;
+<<<<<<< HEAD
     width: 225px;
+=======
+    width: 200px;
+>>>>>>> parent of 5f9b158... added description, added zoom adjusted sizing for sidebar and title
     position: fixed;
     z-index: 1;
     top: 0;
@@ -22,7 +26,11 @@
     color:#fff;
     text-transform:uppercase;
     font-weight:400;
+<<<<<<< HEAD
     font-size:15px;
+=======
+    font-size:16px;
+>>>>>>> parent of 5f9b158... added description, added zoom adjusted sizing for sidebar and title
     letter-spacing:1.5px;
     text-decoration: none
 }
