@@ -1,7 +1,7 @@
 /*SideNav CSS*/
 .sidenav {
     height: 100%;
-    width: 200px;
+    width: 225px;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -22,7 +22,7 @@
     color:#fff;
     text-transform:uppercase;
     font-weight:400;
-    font-size:16px;
+    font-size:15px;
     letter-spacing:1.5px;
     text-decoration: none
 }
@@ -33,7 +33,7 @@
 
 .general {
     /*YOU WILL BASICALLY NEED THIS MARGIN-LEFT EVERYWHERE SO YOU DO NOT GET COVERED BY THE BAR*/
-    margin-left: 200px;/* Same as the width of the sidenav */
+    margin-left: 225px;/* Same as the width of the sidenav */
     font-family: "Nunito Sans",sans-serif!important;
     color:#fff;
 }
