@@ -7,6 +7,6 @@
         die ('Error connecting to mysql. :-( <br/>');
     } else {
         // uncomment the line below if you want a success message
-        // echo 'We have connected to MySQL! :-) <br/>';
+         echo 'We have connected to MySQL! :-) <br/>';
     }
 ?>
