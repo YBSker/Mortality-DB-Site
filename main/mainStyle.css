@@ -1,14 +1,14 @@
 /*SideNav CSS*/
 .sidenav {
     height: 100%;
-    width: 200px;
-    position: fixed;
+    width: 12vw;
+    position: absolute;
     z-index: 1;
     top: 0;
     left: 0;
     background-color: #191919;
     overflow-x: hidden;
-    padding-top: 20px;
+    padding-top: 2vw;
 }
 
 .sidenav a {
@@ -16,15 +16,16 @@
     margin-right:20%;
     text-align:right;
     clear:both;
-    margin-top:60px;
+    margin-top:3vw;
     /*font-family: "Nunito Sans",sans-serif!important;*/
     font-family: 'PT Sans', sans-serif;;
-    color:#fff;
+    color:White;
     text-transform:uppercase;
     font-weight:400;
-    font-size:16px;
+    font-size: 0.9vw; /* Responsive font size */
     letter-spacing:1.5px;
-    text-decoration: none
+    text-decoration: none;
+
 }
 
 .sidenav a:hover {
@@ -49,9 +50,21 @@
     background-size: cover;
 }
 
-.center {
-
+.image-container2 {
+    background-image: url("img_nature.jpg"); /* The image used - important! */
+    background-size: cover;
+    height: 0px; /* Some height */
     text-align: center;
+}
+.center {
+    font-size: 1.1vw; /* Responsive font size */
+    font-weight: normal;
+    position: absolute; /* Position text */
+    top: 40%; /* Position text in the middle */
+    left: 10%; /* Position text in the middle */
+    font-family: 'PT Sans', sans-serif;;
+    text-align: center;
+    width: 80%;
 }
 
 /*Fade in utility*/
@@ -106,3 +119,27 @@
         opacity: 1;
     }
 }
+
+.image-container {
+    background-image: url("img_nature.jpg"); /* The image used - important! */
+    background-size: cover;
+    height: 0px; /* Some height */
+    text-align: center;
+}
+
+.cut-text {
+    background-color: #e3e3e3;
+    color: black;
+    font-size: 4vw; /* Responsive font size */
+    font-weight: bold;
+    margin: 0 auto; /* Center the text container */
+    padding: 0px;
+    width: 25%;
+    position: absolute; /* Position text */
+    top: 30%; /* Position text in the middle */
+    left: 55%; /* Position text in the middle */
+    transform: translate(-50%, -50%); /* Position text in the middle */
+    mix-blend-mode: screen; /* This makes the cutout text possible */
+    font-family: 'PT Sans', sans-serif;;
+}
+
