@@ -1,4 +1,4 @@
-@@ -0,0 +1,256 @@
+@@ -0,0 +1,259 @@
 /*
 Stanley Chu, schu17
 Jerry Chen, jchen268
@@ -21,73 +21,29 @@ DROP TABLE IF EXISTS Crimes;
 DROP TABLE IF EXISTS CausesOfDeath;
 DROP TABLE IF EXISTS LifeExpectancyState;
 
-
-CREATE TABLE LifeExpectancyCountry (
-                                       countryName  VARCHAR(20),
-                                       theYear     YEAR,
-                                       lifeExpectancy FLOAT,
-                                       PRIMARY KEY(countryName, theYear)
+CREATE TABLE EducationPrimaryAttainment  (
+                                             countryName VARCHAR(40),
+                                             year DECIMAL(4,0),
+                                             value DECIMAL(10,2),
+                                             PRIMARY KEY(countryName, year)
 );
-
-CREATE TABLE Movies (
-                        movieName  VARCHAR(20),
-                        theYear     YEAR,
-                        genre VARCHAR(15),
-                        country VARCHAR(20),
-                        IMDBScore FLOAT,
-                        PRIMARY KEY(movieName, theYear)
+CREATE TABLE EducationExpenditureGDP  (
+                                          countryName VARCHAR(40),
+                                          year DECIMAL(4,0),
+                                          value DECIMAL(10,2),
+                                          PRIMARY KEY(countryName, year)
 );
-
-CREATE TABLE Crimes (
-                        jurisdiction  VARCHAR(20),
-                        theYear     YEAR,
-                        prisonerCount MEDIUMINT,
-                        statePopulation MEDIUMINT,
-                        violentCrimeTotal MEDIUMINT,
-                        PRIMARY KEY(jurisdiction, theYear)
+CREATE TABLE EducationLiteracyRate  (
+                                        countryName VARCHAR(40),
+                                        year DECIMAL(4,0),
+                                        value DECIMAL(10,2),
+                                        PRIMARY KEY(countryName, year)
 );
-
-CREATE TABLE CausesOfDeath (
-                               countryName  VARCHAR(20),
-                               theYear     YEAR,
-                               cardiovascular INT,
-                               homicide INT,
-                               roadInjury INT,
-                               naturalDisaster INT,
-                               suicide INT,
-                               PRIMARY KEY(countryName, theYear)
-);
-
-CREATE TABLE LifeExpectancyState (
-                                     stateName  VARCHAR(20),
-                                     countyName VARCHAR(30),
-                                     lifeExpectancy FLOAT,
-                                     PRIMARY KEY(stateName, countyName, lifeExpectancy)
-);
-
-CREATE TABLE EducationPrimaryAttainment (
-                                            countryName VARCHAR(40),
-                                            year DECIMAL(4,0),
-                                            value DECIMAL(10,2),
-                                            PRIMARY KEY(countryName, year)
-);
-CREATE TABLE EducationExpenditureGDP (
-                                         countryName VARCHAR(40),
-                                         year DECIMAL(4,0),
-                                         value DECIMAL(10,2),
-                                         PRIMARY KEY(countryName, year)
-);
-CREATE TABLE EducationLiteracyRate (
-                                       countryName VARCHAR(40),
-                                       year DECIMAL(4,0),
-                                       value DECIMAL(10,2),
-                                       PRIMARY KEY(countryName, year)
-);
-CREATE TABLE EducationPrimaryCompletionRate (
-                                                countryName VARCHAR(40),
-                                                year DECIMAL(4,0),
-                                                value DECIMAL(10,2),
-                                                PRIMARY KEY(countryName, year)
+CREATE TABLE EducationPrimaryCompletionRate  (
+                                                 countryName VARCHAR(40),
+                                                 year DECIMAL(4,0),
+                                                 value DECIMAL(10,2),
+                                                 PRIMARY KEY(countryName, year)
 );
 CREATE TABLE EducationPrimarySchoolEnrollment (
                                                   countryName VARCHAR(40),
@@ -171,64 +127,111 @@ CREATE TABLE tempEducation (
                                PRIMARY KEY(countryName, year)
 );
 
+CREATE TABLE LifeExpectancyCountry (
+                                       countryName  VARCHAR(20),
+                                       theYear     YEAR,
+                                       lifeExpectancy FLOAT,
+                                       PRIMARY KEY(countryName, theYear)
+);
+
+CREATE TABLE Movies (
+                        movieName  VARCHAR(20),
+                        theYear     YEAR,
+                        genre VARCHAR(15),
+                        country VARCHAR(20),
+                        IMDBScore FLOAT,
+                        PRIMARY KEY(movieName, theYear)
+);
+
+CREATE TABLE Crimes (
+                        jurisdiction  VARCHAR(20),
+                        theYear     YEAR,
+                        prisonerCount MEDIUMINT,
+                        statePopulation MEDIUMINT,
+                        violentCrimeTotal MEDIUMINT,
+                        PRIMARY KEY(jurisdiction, theYear)
+);
+
+CREATE TABLE CausesOfDeath (
+                               countryName  VARCHAR(20),
+                               theYear     YEAR,
+                               cardiovascular INT,
+                               homicide INT,
+                               roadInjury INT,
+                               naturalDisaster INT,
+                               suicide INT,
+                               PRIMARY KEY(countryName, theYear)
+);
+
+CREATE TABLE LifeExpectancyState (
+                                     stateName  VARCHAR(20),
+                                     countyName VARCHAR(30),
+                                     stateAbbrev VARCHAR(3),
+                                     lifeExpectancy FLOAT,
+                                     PRIMARY KEY(stateName, countyName, lifeExpectancy)
+);
+
 /*Couldn't find files with just the "name.txt", if grader wants to run might need to change the filepath, sorry.*/
-LOAD DATA LOCAL INFILE 'C:/Users/stanl/Desktop/Senior Year/databases/data/Country.txt'
+LOAD DATA LOCAL INFILE
+    'C:/Users/stanl/Desktop/Senior Year/databases/data/happiness data-small.txt'
+    INTO TABLE HappinessSnapshot
+FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES;
+
+LOAD DATA LOCAL INFILE
+    'C:/Users/stanl/Desktop/Senior Year/databases/data/education data-small.txt'
+    INTO TABLE tempEducation
+FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES;
+
+LOAD DATA LOCAL INFILE
+    'C:/Users/stanl/Desktop/Senior Year/databases/data/healthcare data-small.txt'
+    INTO TABLE HealthCareQualitySnapshot
+FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES;
+
+LOAD DATA LOCAL INFILE
+    'C:/Users/stanl/Desktop/Senior Year/databases/data/Per Capita Health in Millions USD-small.txt'
+    INTO TABLE HealthCareExpenditureSnapshotPerCapita
+FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES;
+
+LOAD DATA LOCAL INFILE
+    'C:/Users/stanl/Desktop/Senior Year/databases/data/Total Health in Millions USD-small.txt'
+    INTO TABLE HealthCareExpenditureSnapshotTotals
+FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES;
+
+
+LOAD DATA LOCAL INFILE 'C:/Users/stanl/Desktop/Senior Year/databases/data/Country-small.txt'
     INTO TABLE LifeExpectancyCountry
     FIELDS TERMINATED BY ','
     LINES TERMINATED BY '\n'
     IGNORE 1 LINES
 (countryName, theYear, lifeExpectancy);
 
-LOAD DATA LOCAL INFILE 'C:/Users/stanl/Desktop/Senior Year/databases/data/State.txt'
+LOAD DATA LOCAL INFILE 'C:/Users/stanl/Desktop/Senior Year/databases/data/State-small.txt'
     INTO TABLE LifeExpectancyState
     FIELDS TERMINATED BY ','
     LINES TERMINATED BY '\n'
     IGNORE 1 LINES
-(stateName, countyName, lifeExpectancy);
+(stateName, countyName, stateAbbrev, lifeExpectancy);
 
-LOAD DATA LOCAL INFILE 'C:/Users/stanl/Desktop/Senior Year/databases/data/Movies.txt'
+LOAD DATA LOCAL INFILE 'C:/Users/stanl/Desktop/Senior Year/databases/data/Movies-small.txt'
     INTO TABLE Movies
     FIELDS TERMINATED BY ','
     LINES TERMINATED BY '\n'
     IGNORE 1 LINES
 (movieName, theYear, genre, country, IMDBScore);
 
-LOAD DATA LOCAL INFILE 'C:/Users/stanl/Desktop/Senior Year/databases/data/Crime.txt'
+LOAD DATA LOCAL INFILE 'C:/Users/stanl/Desktop/Senior Year/databases/data/Crime-small.txt'
     INTO TABLE Crimes
     FIELDS TERMINATED BY ','
     LINES TERMINATED BY '\n'
     IGNORE 1 LINES
 (jurisdiction, theYear, prisonerCount, statePopulation, violentCrimeTotal);
 
-LOAD DATA LOCAL INFILE 'C:/Users/stanl/Desktop/Senior Year/databases/data/Cause.txt'
+LOAD DATA LOCAL INFILE 'C:/Users/stanl/Desktop/Senior Year/databases/data/Cause-small.txt'
     INTO TABLE CausesOfDeath
     FIELDS TERMINATED BY ','
     LINES TERMINATED BY '\n'
-    IGNORE 1 LINES;
-
-LOAD DATA LOCAL INFILE 'C:/Users/stanl/Desktop/Senior Year/databases/data/happiness.txt'
-    INTO TABLE HappinessSnapshot
-FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES;
-
-LOAD DATA LOCAL INFILE
-    'C:/Users/stanl/Desktop/Senior Year/databases/data/education.txt'
-    INTO TABLE tempEducation
-FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES;
-
-LOAD DATA LOCAL INFILE
-    'C:/Users/stanl/Desktop/Senior Year/databases/data/healthcare.txt'
-    INTO TABLE HealthCareQualitySnapshot
-FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES;
-
-LOAD DATA LOCAL INFILE
-    'C:/Users/stanl/Desktop/Senior Year/databases/data/Per Capita Health in Millions USD.txt'
-    INTO TABLE HealthCareExpenditureSnapshotPerCapita
-FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES;
-
-LOAD DATA LOCAL INFILE
-    'C:/Users/stanl/Desktop/Senior Year/databases/data/Total Health in Millions USD.txt'
-    INTO TABLE HealthCareExpenditureSnapshotTotals
-FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES;
+    IGNORE 1 LINES
+(countryName, theYear, cardiovascular, homicide, roadInjury, naturalDisaster, suicide);
 
 DELETE FROM tempEducation
 WHERE year=0;
