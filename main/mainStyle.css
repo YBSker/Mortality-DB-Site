@@ -2,7 +2,11 @@
 .sidenav {
     height: 100%;
 <<<<<<< HEAD
+<<<<<<< HEAD
     width: 225px;
+=======
+    width: 200px;
+>>>>>>> parent of 5f9b158... added description, added zoom adjusted sizing for sidebar and title
 =======
     width: 200px;
 >>>>>>> parent of 5f9b158... added description, added zoom adjusted sizing for sidebar and title
@@ -27,7 +31,11 @@
     text-transform:uppercase;
     font-weight:400;
 <<<<<<< HEAD
+<<<<<<< HEAD
     font-size:15px;
+=======
+    font-size:16px;
+>>>>>>> parent of 5f9b158... added description, added zoom adjusted sizing for sidebar and title
 =======
     font-size:16px;
 >>>>>>> parent of 5f9b158... added description, added zoom adjusted sizing for sidebar and title
