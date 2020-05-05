@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig authType="PASSWORD" host="ugradx.cs.jhu.edu" id="1e32c620-ce22-4c52-9526-13afcf13884d" port="22" nameFormat="DESCRIPTIVE" username="schu17" />
+    </configs>
+  </component>
+</project>
