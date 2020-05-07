@@ -1,4 +1,3 @@
-@@ -0,0 +1,256 @@
 /*
 Stanley Chu, schu17
 Jerry Chen, jchen268
@@ -14,7 +13,7 @@ DROP TABLE IF EXISTS HappinessSnapshot ;
 DROP TABLE IF EXISTS HealthCareExpenditureSnapshotPerCapita ;
 DROP TABLE IF EXISTS HealthCareExpenditureSnapshotTotals ;
 DROP TABLE IF EXISTS HealthCareQualitySnapshot ;
-DROP TABLE IF EXISTS tempEducation;
+DROP TABLE IF EXISTS EducationSnapshot;
 DROP TABLE IF EXISTS LifeExpectancyCountry;
 DROP TABLE IF EXISTS Movies;
 DROP TABLE IF EXISTS Crimes;
@@ -63,49 +62,6 @@ CREATE TABLE LifeExpectancyState (
                                      countyName VARCHAR(30),
                                      lifeExpectancy FLOAT,
                                      PRIMARY KEY(stateName, countyName, lifeExpectancy)
-);
-
-CREATE TABLE EducationPrimaryAttainment (
-                                            countryName VARCHAR(40),
-                                            year DECIMAL(4,0),
-                                            value DECIMAL(10,2),
-                                            PRIMARY KEY(countryName, year)
-);
-CREATE TABLE EducationExpenditureGDP (
-                                         countryName VARCHAR(40),
-                                         year DECIMAL(4,0),
-                                         value DECIMAL(10,2),
-                                         PRIMARY KEY(countryName, year)
-);
-CREATE TABLE EducationLiteracyRate (
-                                       countryName VARCHAR(40),
-                                       year DECIMAL(4,0),
-                                       value DECIMAL(10,2),
-                                       PRIMARY KEY(countryName, year)
-);
-CREATE TABLE EducationPrimaryCompletionRate (
-                                                countryName VARCHAR(40),
-                                                year DECIMAL(4,0),
-                                                value DECIMAL(10,2),
-                                                PRIMARY KEY(countryName, year)
-);
-CREATE TABLE EducationPrimarySchoolEnrollment (
-                                                  countryName VARCHAR(40),
-                                                  year DECIMAL(4,0),
-                                                  value DECIMAL(10,2),
-                                                  PRIMARY KEY(countryName, year)
-);
-CREATE TABLE EducationTertiarySchoolEnrollment (
-                                                   countryName VARCHAR(40),
-                                                   year DECIMAL(4,0),
-                                                   value DECIMAL(10,2),
-                                                   PRIMARY KEY(countryName, year)
-);
-CREATE TABLE EducationPupilTeacherRatio (
-                                            countryName VARCHAR(40),
-                                            year DECIMAL(4,0),
-                                            value DECIMAL(50,2),
-                                            PRIMARY KEY(countryName, year)
 );
 
 CREATE TABLE HappinessSnapshot (
@@ -158,7 +114,7 @@ CREATE TABLE HealthCareQualitySnapshot (
                                            PRIMARY KEY(countryName, year)
 );
 
-CREATE TABLE tempEducation (
+CREATE TABLE EducationSnapshot (
                                countryName VARCHAR(40),
                                year DECIMAL(4,0),
                                educationalAttainment DECIMAL(4,2),
@@ -172,86 +128,63 @@ CREATE TABLE tempEducation (
 );
 
 /*Couldn't find files with just the "name.txt", if grader wants to run might need to change the filepath, sorry.*/
-LOAD DATA LOCAL INFILE 'C:/Users/stanl/Desktop/Senior Year/databases/data/Country.txt'
+LOAD DATA LOCAL INFILE 'C:/Users/Stanley Chu/Desktop/College Docs/Senior Year/databases/data/Country.txt'
     INTO TABLE LifeExpectancyCountry
     FIELDS TERMINATED BY ','
     LINES TERMINATED BY '\n'
     IGNORE 1 LINES
 (countryName, theYear, lifeExpectancy);
 
-LOAD DATA LOCAL INFILE 'C:/Users/stanl/Desktop/Senior Year/databases/data/State.txt'
+LOAD DATA LOCAL INFILE 'C:/Users/Stanley Chu/Desktop/College Docs/Senior Year/databases/data/State.txt'
     INTO TABLE LifeExpectancyState
     FIELDS TERMINATED BY ','
     LINES TERMINATED BY '\n'
     IGNORE 1 LINES
 (stateName, countyName, lifeExpectancy);
 
-LOAD DATA LOCAL INFILE 'C:/Users/stanl/Desktop/Senior Year/databases/data/Movies.txt'
+LOAD DATA LOCAL INFILE 'C:/Users/Stanley Chu/Desktop/College Docs/Senior Year/databases/data/Movies.txt'
     INTO TABLE Movies
     FIELDS TERMINATED BY ','
     LINES TERMINATED BY '\n'
     IGNORE 1 LINES
 (movieName, theYear, genre, country, IMDBScore);
 
-LOAD DATA LOCAL INFILE 'C:/Users/stanl/Desktop/Senior Year/databases/data/Crime.txt'
+LOAD DATA LOCAL INFILE 'C:/Users/Stanley Chu/Desktop/College Docs/Senior Year/databases/data/Crime.txt'
     INTO TABLE Crimes
     FIELDS TERMINATED BY ','
     LINES TERMINATED BY '\n'
     IGNORE 1 LINES
 (jurisdiction, theYear, prisonerCount, statePopulation, violentCrimeTotal);
 
-LOAD DATA LOCAL INFILE 'C:/Users/stanl/Desktop/Senior Year/databases/data/Cause.txt'
+LOAD DATA LOCAL INFILE 'C:/Users/Stanley Chu/Desktop/College Docs/Senior Year/databases/data/Cause.txt'
     INTO TABLE CausesOfDeath
     FIELDS TERMINATED BY ','
     LINES TERMINATED BY '\n'
     IGNORE 1 LINES;
 
-LOAD DATA LOCAL INFILE 'C:/Users/stanl/Desktop/Senior Year/databases/data/happiness.txt'
+LOAD DATA LOCAL INFILE 'C:/Users/Stanley Chu/Desktop/College Docs/Senior Year/databases/data/happiness.txt'
     INTO TABLE HappinessSnapshot
 FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES;
 
 LOAD DATA LOCAL INFILE
-    'C:/Users/stanl/Desktop/Senior Year/databases/data/education.txt'
-    INTO TABLE tempEducation
+    'C:/Users/Stanley Chu/Desktop/College Docs/Senior Year/databases/data/education.txt'
+    INTO TABLE EducationSnapshot
 FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES;
 
 LOAD DATA LOCAL INFILE
-    'C:/Users/stanl/Desktop/Senior Year/databases/data/healthcare.txt'
+    'C:/Users/Stanley Chu/Desktop/College Docs/Senior Year/databases/data/healthcare.txt'
     INTO TABLE HealthCareQualitySnapshot
 FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES;
 
 LOAD DATA LOCAL INFILE
-    'C:/Users/stanl/Desktop/Senior Year/databases/data/Per Capita Health in Millions USD.txt'
+    'C:/Users/Stanley Chu/Desktop/College Docs/Senior Year/databases/data/Per Capita Health in Millions USD.txt'
     INTO TABLE HealthCareExpenditureSnapshotPerCapita
 FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES;
 
 LOAD DATA LOCAL INFILE
-    'C:/Users/stanl/Desktop/Senior Year/databases/data/Total Health in Millions USD.txt'
+    'C:/Users/Stanley Chu/Desktop/College Docs/Senior Year/databases/data/Total Health in Millions USD.txt'
     INTO TABLE HealthCareExpenditureSnapshotTotals
 FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES;
 
-DELETE FROM tempEducation
+DELETE FROM EducationSnapshot
 WHERE year=0;
-
-INSERT INTO EducationPrimaryAttainment (countryName, year, value)
-SELECT countryName, year, educationalAttainment FROM tempEducation;
-
-INSERT INTO EducationExpenditureGDP  (countryName, year, value)
-SELECT countryName, year, governmentExpenditure FROM tempEducation;
-
-INSERT INTO EducationLiteracyRate  (countryName, year, value)
-SELECT countryName, year, literacyRate FROM tempEducation;
-
-INSERT INTO EducationPrimaryCompletionRate  (countryName, year, value)
-SELECT countryName, year, primaryCompletionRate FROM tempEducation;
-
-INSERT INTO EducationPrimarySchoolEnrollment  (countryName, year, value)
-SELECT countryName, year, schoolEnrollment FROM tempEducation;
-
-INSERT INTO EducationTertiarySchoolEnrollment  (countryName, year, value)
-SELECT countryName, year, Education_Tertiary_School_Enrollment FROM tempEducation;
-
-INSERT INTO EducationPupilTeacherRatio   (countryName, year, value)
-SELECT countryName, year, pupilTeacherRatio FROM tempEducation;
-
-DROP TABLE IF EXISTS tempEducation;
