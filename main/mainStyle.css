@@ -1,10 +1,10 @@
 /*SideNav CSS*/
 .sidenav {
     height: 100%;
-    width: 225px;
-    position: fixed;
-    /*width: 12vw;*/
-    /*position: absolute;*/
+    /*width: 225px;*/
+    /*position: fixed;*/
+    width: 12vw;
+    position: absolute;
     z-index: 1;
     top: 0;
     left: 0;
@@ -35,7 +35,7 @@
 
 .general {
     /*YOU WILL BASICALLY NEED THIS MARGIN-LEFT EVERYWHERE SO YOU DO NOT GET COVERED BY THE BAR*/
-    margin-left: 225px;/* Same as the width of the sidenav */
+    margin-left: 12vw;/* Same as the width of the sidenav */
     font-family: "Nunito Sans",sans-serif!important;
     color:#fff;
 }
@@ -50,6 +50,8 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: scroll;
+    overflow: visible;
 }
 
 .image-container2 {
