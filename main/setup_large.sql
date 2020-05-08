@@ -19,6 +19,8 @@ DROP TABLE IF EXISTS Movies;
 DROP TABLE IF EXISTS Crimes;
 DROP TABLE IF EXISTS CausesOfDeath;
 DROP TABLE IF EXISTS LifeExpectancyState;
+DROP TABLE IF EXISTS TotalPopulations;
+DROP TABLE IF EXISTS CausesOfDeathPercent;
 
 
 CREATE TABLE LifeExpectancyCountry (
@@ -48,12 +50,30 @@ CREATE TABLE Crimes (
 
 CREATE TABLE CausesOfDeath (
                                countryName  VARCHAR(20),
-                               theYear     YEAR,
-                               cardiovascular INT,
-                               homicide INT,
-                               roadInjury INT,
-                               naturalDisaster INT,
-                               suicide INT,
+                               theYear     DECIMAL(4,0),
+                               cardiovascular FLOAT,
+                               homicide FLOAT,
+                               roadInjury FLOAT,
+                               naturalDisaster FLOAT,
+                               suicide FLOAT,
+                               PRIMARY KEY(countryName, theYear)
+                               );
+                               
+CREATE TABLE TotalPopulations (
+                               countryName  VARCHAR(20),
+                               theYear     DECIMAL(4,0),
+                               totalPop FLOAT,
+                               PRIMARY KEY(countryName, theYear)
+                               );
+
+CREATE TABLE CausesOfDeathPercent (
+                               countryName  VARCHAR(20),
+                               theYear     DECIMAL(4,0),
+                               cardiovascular FLOAT,
+                               homicide FLOAT,
+                               roadInjury FLOAT,
+                               naturalDisaster FLOAT,
+                               suicide FLOAT,
                                PRIMARY KEY(countryName, theYear)
 );
 
@@ -186,5 +206,25 @@ LOAD DATA LOCAL INFILE
     INTO TABLE HealthCareExpenditureSnapshotTotals
 FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES;
 
+LOAD DATA LOCAL INFILE
+    'C:/Users/Stanley Chu/Desktop/College Docs/Senior Year/databases/data/totalPop.txt'
+    INTO TABLE TotalPopulations
+FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES;
+
+DELETE FROM TotalPopulations
+WHERE theYear=0;
+
+DELETE FROM CausesOfDeath WHERE theYear = 0;
+
+
+INSERT INTO CausesOfDeathPercent (countryName, theYear, cardiovascular, homicide, roadInjury, naturalDisaster, suicide)
+SELECT a.countryName, a.theYear, 100.0 * cardiovascular / b.totalPop, 100.0 * homicide / b.totalPop, 
+100.0 * roadInjury / b.totalPop, 100.0 * naturalDisaster / b.totalPop, 100.0 * suicide / b.totalPop 
+FROM CausesOfDeath AS a CROSS JOIN TotalPopulations AS b
+WHERE a.countryName = b.countryName AND a.theYear = b.theYear;
+
 DELETE FROM EducationSnapshot
 WHERE year=0;
+
+DROP TABLE IF EXISTS CausesOfDeath;
+DROP TABLE IF EXISTS TotalPopulations;
