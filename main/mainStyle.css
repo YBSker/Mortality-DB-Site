@@ -58,14 +58,18 @@ html, body { /* ensure the available document space is the full height of the vi
     /*background-image: url("https://wpamelia.com/wp-content/uploads/2019/02/astronomy-constellation-dark-998641.jpg");*/
     background-image: url("https://images.alphacoders.com/935/935315.png");
     /* Full height */
-    height: 100%;
-
+    /*height: 100%;*/
     /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
+    /*background-position: center;*/
     background-size: cover;
-    background-attachment: scroll;
-    overflow: visible;
+    background-position: center;
+    background-attachment: fixed;
+
+    /*background-repeat: no-repeat;*/
+    /*background-size: cover;*/
+    /*background-attachment: scroll;*/
+    /*overflow-x: scroll;*/
+    /*overflow: visible;*/
 }
 
 .image-container2 {
