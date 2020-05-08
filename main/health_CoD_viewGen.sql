@@ -35,9 +35,9 @@ SELECT a.countryName, ROUND(averageHouseholdOutOfPocket, 2) AS averageHouseholdO
 ROUND(averageCapitalHealthExpend, 2) AS averageCapitalHealthExpend, 
 ROUND(averageSocialInsuranceContribution, 2) AS averageSocialInsuranceContribution, 
 ROUND(average_cardiovascular, 2) AS average_cardiovascular, 
-ROUND(average_homicide, 2) AS average_homicide, 
-ROUND(average_roadInjury, 2) AS average_roadInjury
-FROM healthCare_perCapita_perCountry AS a INNER JOIN average_deaths_per_country AS c ON a.countryName = c.countryName;
+ROUND(average_homicide, 5) AS average_homicide, 
+ROUND(average_roadInjury, 5) AS average_roadInjury
+FROM healthCare_perCapita_perCountry AS a INNER JOIN average_deaths_per_country AS c ON a.countryName LIKE c.countryName;
 
 
 DROP VIEW IF EXISTS healthCare_CoD_perCapita;
