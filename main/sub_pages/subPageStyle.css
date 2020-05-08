@@ -31,11 +31,18 @@
     text-align: left;
 }
 
+.untab_me {
+    position:relative;
+    left:-100px;
+    text-align: left;
+    background-color: red;
+}
+
 /* Style the button that is used to open and close the collapsible content */
 .collapsible {
     position:relative;
     left:18%;
-    color: #e3e3e3;
+    color: #87CEFA;
     cursor: pointer;
     /*padding: 18px;*/
     width: 100%;
@@ -44,7 +51,8 @@
     text-align: left;
     outline: none;
     font-family: 'PT Sans', sans-serif;
-    font-size: 1vw;
+    font-size: 1.1vw;
+    font-weight: bold;
 }
 
 .collapsible:hover {
