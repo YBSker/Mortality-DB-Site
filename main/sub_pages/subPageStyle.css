@@ -35,7 +35,7 @@
 .collapsible {
     position:relative;
     left:18%;
-    color: #e3e3e3;
+    color: #87CEFA;
     cursor: pointer;
     /*padding: 18px;*/
     width: 100%;
@@ -44,7 +44,8 @@
     text-align: left;
     outline: none;
     font-family: 'PT Sans', sans-serif;
-    font-size: 1vw;
+    font-size: 1.1vw;
+    font-weight: bold;
 }
 
 .collapsible:hover {

@@ -228,3 +228,5 @@ WHERE year=0;
 
 DROP TABLE IF EXISTS CausesOfDeath;
 DROP TABLE IF EXISTS TotalPopulations;
+
+
