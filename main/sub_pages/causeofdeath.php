@@ -42,7 +42,7 @@ include 'sub_page_sidebar.html';
 
     <div class="image-container2">
         <div class="sub_page_spacing">
-            <h1 style="color: #87CEFA;">Crime Rate and Life Expectancy</h1>
+            <h1 style="color: #87CEFA;">Action Movies and Homicide</h1>
             <div class="general fade-in tab_me">
                 <h3>In this section, we look at whether or not the proportion of action movies to total movies a country produces
                     is correlated with average proportion of deaths in that country that are categorized as homicide, as action is the genre

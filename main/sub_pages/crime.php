@@ -63,7 +63,7 @@ include 'sub_page_sidebar.html';
                             prisonerCount / statePopulation AS rate,
                             lifeExpectancy AS le
                             FROM Crimes
-                            INNER JOIN LifeExpectancyState ON LOWER(LifeExpectancyState.stateName) = LOWER(Crimes.jurisdiction) AND Crimes.theYear = '2016-01-01' AND LifeExpectancyState.countyName = '(blank)'         
+                            INNER JOIN LifeExpectancyState ON LOWER(LifeExpectancyState.stateName) = LOWER(Crimes.jurisdiction) AND (Crimes.theYear = '2016-01-01' OR Crimes.theYear = 2016) AND LifeExpectancyState.countyName = '(blank)'         
                             ORDER BY rate DESC
                             ";
                     $result = $mysqli->query($sql);
