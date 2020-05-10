@@ -16,6 +16,7 @@ function outputResultsTableHeader()
     echo "<th> Rank of Deaths/158 <br>(1 is Least)</th>";
     echo "</tr>";
 }
+
 function outputResultsTableHeader_b()
 {
     echo "<tr>";
@@ -27,6 +28,19 @@ function outputResultsTableHeader_b()
     echo "<th> Rank of Expenditure From Within Wealth Bracket <br>(1 is Most)</th>";
     echo "</tr>";
 }
+
+function outputResultsTableHeader_c()
+{
+    echo "<tr>";
+    echo "<th>  </th>";
+    echo "<th> Country </th>";
+    echo "<th> Cardiovascular Deaths in Percent of <br>Total Population </th>";
+    echo "<th> Average BMI of Country </th>";
+    echo "<th> Average Life Expectancy of Country </th>";
+    echo "<th> Life Expectancy Ranking </th>";
+    echo "</tr>";
+}
+
 include "../open.php";
 
 include 'sub_page_sidebar.html';
@@ -377,17 +391,34 @@ include 'sub_page_sidebar.html';
                         echo "0 results";
                     }
                     echo "</table>";
+                    $sql = "SELECT countryName, average_cardiovascular, averageBMI, lifeExpectancy, RANK() OVER (ORDER BY lifeExpectancy) life_rank FROM perCountryDataCoDHealth WHERE countryIncomeGroup = 'Hi' AND averageSocialInsuranceContribution IS NOT NULL  ORDER BY average_cardiovascular DESC";
+                    $result = $mysqli->query($sql);
+                    if ($result->num_rows > 0) {
+                        echo "<table border=\"1px solid black\">";
+                        outputResultsTableHeader_c();
+                        for ($i = 1; $i < 11; $i++) {
+                            $row = $result->fetch_assoc();
+                            echo "<tr>";
+                            echo "<td>$i</td>";
+                            echo "<td>" . $row["countryName"] . "</td>";
+                            echo "<td>" . $row["average_cardiovascular"] . "</td>";
+                            echo "<td>" . $row["averageBMI"] . "</td>";
+                            echo "<td>" . $row["lifeExpectancy"] . "</td>";
+                            echo "<td>" . $row["life_rank"] . "</td>";
+                            echo "</tr>";
+
+                        }
+                    } else {
+                        echo "0 results";
+                    }
+                    echo "</table>";
                     ?>
                 </div>
-                <h3>A higher out of pocket cost for households in affording healthcare seemed to correspond with a
-                    higher rate of deaths related to cardiovascular disease,
-                    a lower rate of deaths related to homicide, and a lower rate of death to do with vehicular
-                    accidents. The case of cardiovascular disease seems to be sensible, as
-                    higher out of pocket costs are perhaps more indicative of inability to afford preventative
-                    medications or treatments. In the cases of homicides and vehicular accidents,
-                    perhaps there are more factors at play, as there does seem to be a range of rankings that a
-                    country
-                    can take. Perhaps we need to look at more statistics.</h3>
+                <h3>Within the high income country bracket, we consistently find about a middle ranking (of 51 "high"
+                    countries) in expenditures within the countries with the top 10
+                    rates of cardiovascular deaths. In general, it seems at this level of a countries wealth, social
+                    insurance expenditures does not have as much of an effect on the rates
+                    of cardiovascular diseases as, say, age of a country, or average BMI of a country. </h3>
             </div>
             <button type="button" class="collapsible">Top 10 Cardiovascular Death Rates of Middle Income Countries
             </button>
@@ -418,25 +449,7 @@ include 'sub_page_sidebar.html';
                     echo "</table>";
                     ?>
                 </div>
-                <h3>More capital health expenditures (investments in health infrastructure, vaccine stocks, etc)
-                    seemed
-                    to correspond with higher rates of
-                    cardiovascular related deaths and lower homicide and vehicular accident death rates with a
-                    couple of
-                    outliers. For cardiovascular disease related deaths,
-                    perhaps infrastructure is not indicative of chances of surviving heart attacks and is more of an
-                    indicator of a nation's wealth. This could be indicative of longer
-                    life spans or other factors leading to higher rates of cardiovascular disease. Infrastructure
-                    might
-                    not be as helpful in the case of cardiovascular disease. For instance, one of
-                    the biggest indicators of surviving a heart attack is time until CPR or defibrillation. As for
-                    lower
-                    homicide and vehicular accident deaths, in general data seems to trend towards
-                    lower likelihood of this fatality. Likely since these two forms of death rely more on likelihood
-                    and
-                    speed of treatment over a longer term and with more specific equipment.
-                    The two outliers are consistent between both homicide and vehicular accidents and perhaps can be
-                    considered as unrepresentative outliers.</h3>
+                <h3></h3>
             </div>
             <button type="button" class="collapsible">Top 10 Cardiovascular Death Rates of Low Income Countries
             </button>
@@ -444,7 +457,7 @@ include 'sub_page_sidebar.html';
                 <h2>Low Income Death Rates and Social Healthcare Spending</h2>
                 <div class="general fade-in">
                     <?php
-                    $sql = "SELECT countryName, average_cardiovascular, average_homicide, averageSocialInsuranceContribution, RANK() OVER (ORDER BY averageSocialInsuranceContribution) spending_rank FROM perCountryDataCoDHealth WHERE countryIncomeGroup = 'Low' AND averageSocialInsuranceContribution IS NOT NULL  ORDER BY average_cardiovascular DESC";
+                    $sql = "SELECT countryName, average_cardiovascular, averageBMI, lifeExpectancy, RANK() OVER (ORDER BY averageSocialInsuranceContribution) spending_rank FROM perCountryDataCoDHealth WHERE countryIncomeGroup = 'Low' AND averageSocialInsuranceContribution IS NOT NULL  ORDER BY average_cardiovascular DESC";
                     $result = $mysqli->query($sql);
                     if ($result->num_rows > 0) {
                         echo "<table border=\"1px solid black\">";

@@ -35,7 +35,7 @@ GROUP BY countryName;
 CREATE VIEW average_health_snap_per_country AS
 SELECT countryName, 
         AVG(NULLIF(lifeExpectancy, 0)) AS lifeExpectancy,
-        AVG(NULLIF(averageBMI, 0)) AS averageBMI
+        AVG(NULLIF(BMI, 0)) AS averageBMI
 FROM HealthCareQualitySnapshot
 GROUP BY countryName;
 
