@@ -64,3 +64,14 @@
     overflow: hidden;
 }
 
+a:link {
+    color: #87CEFA;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #87CEFA;
+    background-color: transparent;
+    text-decoration: none;
+}

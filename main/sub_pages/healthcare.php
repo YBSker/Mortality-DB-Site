@@ -63,7 +63,11 @@ include 'sub_page_sidebar.html';
                     Homicide and vehicular accidents were chosen as we wished to explore any kind of correspondence
                     between various forms of healthcare expenditures and violent deaths. Conclusions will be based on
                     data found from
-                    ourworldindata.org, worldbank.org, and WHO.int.</h3>
+                    <a href="https://ourworldindata.org/homicides">ourworldindata.org</a>, <a
+                            href="https://data.worldbank.org/indicator/sp.pop.totl">worldbank.org</a>, and <a
+                            href="https://apps.who.int/nha/database/Select/Indicators/en">WHO.int</a>. For
+                    the values that make sense for it, we average
+                    data collected from 2000-2018</h3>
             </div>
 
             <button type="button" class="collapsible">Top 10 Countries in Average Household Out of Pocket Expenses Per
@@ -343,7 +347,8 @@ include 'sub_page_sidebar.html';
                     households on healthcare corresponds
                     to a higher rate of cardiovascular death. The country data would seem to be skewed, as there is some
                     heavy error with specific countries such
-                    as Japan and France. Data on households seems to be consistent with other studies...particularly in
+                    as <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1115846/">Japan and France</a>. Data on
+                    households seems to be consistent with other studies...particularly in
                     the case of affording preventative medications.
                     More spending in general seemed to be indicative of a lower risk of death by homicide and vehicular
                     accidents. Public spending on infrastructure and
@@ -418,7 +423,11 @@ include 'sub_page_sidebar.html';
                     countries) in expenditures within the countries with the top 10
                     rates of cardiovascular deaths. In general, it seems at this level of a countries wealth, social
                     insurance expenditures does not have as much of an effect on the rates
-                    of cardiovascular diseases as, say, age of a country, or average BMI of a country. </h3>
+                    of cardiovascular diseases as, say, age of a country, or average BMI of a country. In this subset of
+                    countries that
+                    are in the high income country bracket, we see a life expectancy above the global average and in the
+                    top part of their bracket as well
+                    as BMIs that are ALL in the overweight range, perhapes lending credence to this theory.</h3>
             </div>
             <button type="button" class="collapsible">Top 10 Cardiovascular Death Rates of Middle Income Countries
             </button>
@@ -447,9 +456,35 @@ include 'sub_page_sidebar.html';
                         echo "0 results";
                     }
                     echo "</table>";
+                    $sql = "SELECT countryName, average_cardiovascular, averageBMI, lifeExpectancy, RANK() OVER (ORDER BY lifeExpectancy) life_rank FROM perCountryDataCoDHealth WHERE (countryIncomeGroup = 'Low-Mid' OR countryIncomeGroup = 'Up-Mid') AND averageSocialInsuranceContribution IS NOT NULL  ORDER BY average_cardiovascular DESC";
+                    $result = $mysqli->query($sql);
+                    if ($result->num_rows > 0) {
+                        echo "<table border=\"1px solid black\">";
+                        outputResultsTableHeader_c();
+                        for ($i = 1; $i < 11; $i++) {
+                            $row = $result->fetch_assoc();
+                            echo "<tr>";
+                            echo "<td>$i</td>";
+                            echo "<td>" . $row["countryName"] . "</td>";
+                            echo "<td>" . $row["average_cardiovascular"] . "</td>";
+                            echo "<td>" . $row["averageBMI"] . "</td>";
+                            echo "<td>" . $row["lifeExpectancy"] . "</td>";
+                            echo "<td>" . $row["life_rank"] . "</td>";
+                            echo "</tr>";
+
+                        }
+                    } else {
+                        echo "0 results";
+                    }
+                    echo "</table>";
                     ?>
                 </div>
-                <h3></h3>
+                <h3>In middle income countries, we can observe a tendency for more spending (out of 79 countries) given
+                    a higher chance of cardiovascular death.
+                    Populations in this bracket tend to be just barely overweight and have an average lifespan just
+                    around the global average. Within their bracket life expectancies tend to be around the middle or
+                    better than average which indicates
+                    this data might again be slightly confounded by these extra factors.</h3>
             </div>
             <button type="button" class="collapsible">Top 10 Cardiovascular Death Rates of Low Income Countries
             </button>
@@ -457,7 +492,7 @@ include 'sub_page_sidebar.html';
                 <h2>Low Income Death Rates and Social Healthcare Spending</h2>
                 <div class="general fade-in">
                     <?php
-                    $sql = "SELECT countryName, average_cardiovascular, averageBMI, lifeExpectancy, RANK() OVER (ORDER BY averageSocialInsuranceContribution) spending_rank FROM perCountryDataCoDHealth WHERE countryIncomeGroup = 'Low' AND averageSocialInsuranceContribution IS NOT NULL  ORDER BY average_cardiovascular DESC";
+                    $sql = "SELECT countryName,  average_cardiovascular, average_homicide, averageSocialInsuranceContribution, RANK() OVER (ORDER BY averageSocialInsuranceContribution DESC) spending_rank FROM perCountryDataCoDHealth WHERE countryIncomeGroup = 'Low' AND averageSocialInsuranceContribution IS NOT NULL  ORDER BY average_cardiovascular DESC";
                     $result = $mysqli->query($sql);
                     if ($result->num_rows > 0) {
                         echo "<table border=\"1px solid black\">";
@@ -478,38 +513,57 @@ include 'sub_page_sidebar.html';
                         echo "0 results";
                     }
                     echo "</table>";
-                    $mysqli->close();
+                    $sql = "SELECT countryName, average_cardiovascular, averageBMI, lifeExpectancy, RANK() OVER (ORDER BY lifeExpectancy) life_rank FROM perCountryDataCoDHealth WHERE countryIncomeGroup = 'Low' AND averageSocialInsuranceContribution IS NOT NULL  ORDER BY average_cardiovascular DESC";
+                    $result = $mysqli->query($sql);
+                    if ($result->num_rows > 0) {
+                        echo "<table border=\"1px solid black\">";
+                        outputResultsTableHeader_c();
+                        for ($i = 1; $i < 11; $i++) {
+                            $row = $result->fetch_assoc();
+                            echo "<tr>";
+                            echo "<td>$i</td>";
+                            echo "<td>" . $row["countryName"] . "</td>";
+                            echo "<td>" . $row["average_cardiovascular"] . "</td>";
+                            echo "<td>" . $row["averageBMI"] . "</td>";
+                            echo "<td>" . $row["lifeExpectancy"] . "</td>";
+                            echo "<td>" . $row["life_rank"] . "</td>";
+                            echo "</tr>";
+
+                        }
+                    } else {
+                        echo "0 results";
+                    }
+                    echo "</table>";
                     ?>
                 </div>
-                <h3>More social insurance contributions seemed to correspond to higher cardiovascular disease death,
-                    lower homicide death rates, and lower vehicular accident death rates.
-                    As for the cardiovascular death rates, this may be indicative of an error in our data. Other
-                    studies
-                    have demonstrated that countries such as France and Japan have
-                    some of the LOWEST rates of death by cardiovascular disease
-                    (https://www.aihw.gov.au/getmedia/a8138409-090c-482e-8e5f-e64943be8ff0/hsvd-c06.pdf.aspx). As
-                    for
-                    the rest,
-                    homicide and vehicular death rates seem consistent other than the consistent outlier of the
-                    United
-                    States. Higher social insurance contributions would be indicative of being
-                    able to spend preventative medications in the case of cardiovascular disease and to afford
-                    emergency
-                    treatments for homicides and vehicular accidents. </h3>
+                <h3>Within the lower income countries, we can see some of the highest spending (out of 26) for the
+                    highest amounts of cardiovascular deaths. However, if we compare to the general populace we note
+                    that
+                    the rate of cardiovascular death in this bracket is simply much lower than those of upper and mid
+                    income countries.
+                    We also observe an average incidence of normal weight BMIs and a much lower than average life
+                    expectancy, though in the upper half of their own bracket.</h3>
             </div>
             <div class="general fade-in tab_me">
-                <h3>Overall, based purely on our data sources, it would seem that more spending by a country and
-                    households on healthcare corresponds
-                    to a higher rate of cardiovascular death. The country data would seem to be skewed, as there is
-                    some heavy error with specific countries such
-                    as Japan and France. Data on households seems to be consistent with other studies...particularly
-                    in the case of affording preventative medications.
-                    More spending in general seemed to be indicative of a lower risk of death by homicide and
-                    vehicular accidents. Public spending on infrastructure and
-                    individual healthcare makes sense, as there would be more accessability to life saving
-                    treatments. Individual spendings may be indicative of more availability
-                    to spend money on healthcare and again be indicative of more accessability to life saving
-                    treatments or hospitals in drastic cases.</h3>
+                <h3>Overall, based purely on our data sources and separated by country income, it would seem that more
+                    spending by a country on their member's healthcare
+                    is not indicative of a lower chance of cardiovascular death. However, within each we can note BMI
+                    and life expectancy to be possible confounding factors.
+                    Furthermore, if we compare the different representatives of each income group, we can note that the
+                    low income group had noticeably less cardiovascular deaths
+                    given higher rates of social insurance expenditure that were comparable to some middle income
+                    countries. We should also note that lower life span and higher rates of homicide when compared
+                    to upper and mid income countries may have something to do with this. We can also note that higher
+                    income countries spent dramatically more on social insurance
+                    for typically higher rates of cardiovascular deaths than middle income countries. Overall, it would
+                    seem that in higher and middle income countries, more money spent
+                    on social insurance was not a good indicator of less cardiovascular deaths. One should note that
+                    more spending does not indicate a more robust health system, as this indicates. For instance, the
+                    US spends the most on healthcare in high income nations, but has <a
+                            href="https://www.commonwealthfund.org/publications/issue-briefs/2015/oct/us-health-care-global-perspective">lower
+                        life expectancy and worse
+                        general health than average within
+                        high income countries.</a></h3>
                 <h3>Click above to get data and analysis on specific sections!</h3>
             </div>
 
