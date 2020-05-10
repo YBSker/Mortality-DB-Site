@@ -358,6 +358,7 @@ include 'sub_page_sidebar.html';
                     or hospitals in drastic cases.</h3>
                 <h3>Click above to get data and analysis on specific sections!</h3>
             </div>
+            <br> <br>
 
             <h1 class="tab_title" style="color: #87CEFA;">Wealth of a Country and Relation to the Cost of Death</h1>
 

@@ -62,8 +62,8 @@ ROUND(averageSocialInsuranceContribution, 2) AS averageSocialInsuranceContributi
 ROUND(average_cardiovascular, 2) AS average_cardiovascular, 
 ROUND(average_homicide, 5) AS average_homicide, 
 ROUND(average_roadInjury, 5) AS average_roadInjury,
-ROUND(lifeExpectancy, 5) AS lifeExpectancy, 
-ROUND(averageBMI, 5) AS averageBMI
+ROUND(lifeExpectancy, 2) AS lifeExpectancy, 
+ROUND(averageBMI, 2) AS averageBMI
 FROM perCountryDataCoDHealth_pre AS a INNER JOIN average_health_snap_per_country AS c ON a.countryName LIKE c.countryName;
 
 DROP TABLE IF EXISTS perCountryDataCoDHealth_pre;
