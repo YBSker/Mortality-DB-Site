@@ -10,9 +10,10 @@ function outputResultsTableHeader()
     echo "<tr>";
     echo "<th>  </th>";
     echo "<th> Country of Origin </th>";
-    echo "<th> Genre</th>";
-    echo "<th> Number of Movies </th>";
-    echo "<th> Rank</th>";
+    echo "<th> Total Number of Movies</th>";
+    echo "<th> Movies of Selected Genre </th>";
+    echo "<th> Rate of Genre</th>";
+    echo "<th> Life Expectancy</th>";
     echo "</tr>";
 }
 function outputResultsTableHeader_b()
@@ -46,7 +47,7 @@ include 'sub_page_sidebar.html';
                 is collected from the WHO and IMDb.</h3>
             </div>
 
-            <button type="button" class="collapsible">Top 10 Countries By Highest Rate of Comedies
+            <button type="button" class="collapsible">Is Laughter The Best Medicine: Comedy vs. Life Expectancy
             </button>
             <div class="content general fade-in tab_me">
                 <h2>Rate of Comedies By Country</h2>
@@ -55,9 +56,12 @@ include 'sub_page_sidebar.html';
                     $sql = "SELECT country, 
                             COUNT(*) AS num, 
                             sum(case when genre = 'Comedy' then 1 else 0 end) AS com,
-                            sum(case when genre = 'Comedy' then 1 else 0 end) / COUNT(*) AS rate
+                            sum(case when genre = 'Comedy' then 1 else 0 end) / COUNT(*) AS rate,    
+                            lifeExpectancy AS le
                             FROM Movies
+                            INNER JOIN LifeExpectancyCountry ON LifeExpectancyCountry.countryName = Movies.country AND LifeExpectancyCountry.theYear = 2015
                             GROUP BY country
+                            HAVING COUNT(*) > 9
                             ORDER BY rate DESC                            
                             ";
                     $result = $mysqli->query($sql);
@@ -72,8 +76,8 @@ include 'sub_page_sidebar.html';
                             echo "<td>" . $row["num"] . "</td>";
                             echo "<td>" . $row["com"] . "</td>";
                             echo "<td>" . $row["rate"] . "</td>";
+                            echo "<td>" . $row["le"] . "</td>";
                             echo "</tr>";
-
                         }
                     } else {
                         echo "0 results";
@@ -81,10 +85,20 @@ include 'sub_page_sidebar.html';
                     echo "</table>";
                     ?>
                 </div>
-                <h2>Homicide Death Rates</h2>
+                <h2>Rate of Comedies By Country</h2>
                 <div class="general fade-in">
                     <?php
-                    $sql = "SELECT countryName, averageHouseholdOutOfPocket, average_homicide, RANK() OVER (ORDER BY average_homicide) homicide_rank FROM perCountryDataCoDHealth ORDER BY averageHouseholdOutOfPocket DESC";
+                    $sql = "SELECT country, 
+                            COUNT(*) AS num, 
+                            sum(case when genre = 'Comedy' then 1 else 0 end) AS com,
+                            sum(case when genre = 'Comedy' then 1 else 0 end) / COUNT(*) AS rate,    
+                            lifeExpectancy AS le
+                            FROM Movies
+                            INNER JOIN LifeExpectancyCountry ON LifeExpectancyCountry.countryName = Movies.country AND LifeExpectancyCountry.theYear = 2015
+                            GROUP BY country
+                            HAVING COUNT(*) > 9
+                            ORDER BY rate DESC                            
+                            ";
                     $result = $mysqli->query($sql);
                     if ($result->num_rows > 0) {
                         echo "<table border=\"1px solid black\">";
@@ -93,37 +107,12 @@ include 'sub_page_sidebar.html';
                             $row = $result->fetch_assoc();
                             echo "<tr>";
                             echo "<td>$i</td>";
-                            echo "<td>" . $row["countryName"] . "</td>";
-                            echo "<td>" . $row["averageHouseholdOutOfPocket"] . "</td>";
-                            echo "<td>" . $row["average_homicide"] . "</td>";
-                            echo "<td>" . $row["homicide_rank"] . "</td>";
+                            echo "<td>" . $row["country"] . "</td>";
+                            echo "<td>" . $row["num"] . "</td>";
+                            echo "<td>" . $row["com"] . "</td>";
+                            echo "<td>" . $row["rate"] . "</td>";
+                            echo "<td>" . $row["le"] . "</td>";
                             echo "</tr>";
-
-                        }
-                    } else {
-                        echo "0 results";
-                    }
-                    echo "</table>";
-                    ?>
-                </div>
-                <h2>Vehicular Accident Death Rates</h2>
-                <div class="general fade-in">
-                    <?php
-                    $sql = "SELECT countryName, averageHouseholdOutOfPocket, average_roadInjury, RANK() OVER (ORDER BY average_roadInjury) roadInjury_rank FROM perCountryDataCoDHealth ORDER BY averageHouseholdOutOfPocket DESC";
-                    $result = $mysqli->query($sql);
-                    if ($result->num_rows > 0) {
-                        echo "<table border=\"1px solid black\">";
-                        outputResultsTableHeader();
-                        for ($i = 1; $i < 11; $i++) {
-                            $row = $result->fetch_assoc();
-                            echo "<tr>";
-                            echo "<td>$i</td>";
-                            echo "<td>" . $row["countryName"] . "</td>";
-                            echo "<td>" . $row["averageHouseholdOutOfPocket"] . "</td>";
-                            echo "<td>" . $row["average_roadInjury"] . "</td>";
-                            echo "<td>" . $row["roadInjury_rank"] . "</td>";
-                            echo "</tr>";
-
                         }
                     } else {
                         echo "0 results";
