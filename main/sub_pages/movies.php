@@ -43,7 +43,7 @@ include 'sub_page_sidebar.html';
             <h1 style="color: #87CEFA;">Movie Preferences and Life Expectancy</h1>
             <div class="general fade-in tab_me">
                 <h3>In this section, we look at whether or not a country's movie preferences has any correlation
-                    with the country's average life expectancy or the rate of certain causes of death. Data in this
+                    with the country's average life expectancy. Data in this
                     section
                     is collected from the WHO and IMDb.</h3>
             </div>
