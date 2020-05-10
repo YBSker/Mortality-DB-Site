@@ -40,7 +40,7 @@ include 'sub_page_sidebar.html';
 
     <div class="image-container2">
         <div class="sub_page_spacing">
-            <h1 style="color: #87CEFA;">Movie Preferences and Life Expectancy</h1>
+            <h1 class="tab_title" style="color: #87CEFA;">Movie Preferences and Life Expectancy</h1>
             <div class="general fade-in tab_me">
                 <h3>In this section, we look at whether or not a country's movie preferences has any correlation
                     with the country's average life expectancy. Data in this section
@@ -295,7 +295,7 @@ include 'sub_page_sidebar.html';
 
             </div>
 
-            <h1 style="color: #87CEFA;">Movie Ratings and Happiness</h1>
+            <h1 class="tab_title" style="color: #87CEFA;">Movie Ratings and Happiness</h1>
 
             <div class="general fade-in tab_me">
                 <h3>In this section, we look at whether or not there's a correlation between average movie ratings for a
