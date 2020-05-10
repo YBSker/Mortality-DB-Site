@@ -42,7 +42,7 @@ include 'sub_page_sidebar.html';
     <div class="image-container2">
         <div class="sub_page_spacing">
             <h1 class="tab_title" style="color: #87CEFA;">Level of Education and Life Expectancy</h1>
-            <div class="general fade-in tab_me">
+            <div class="general tab_me">
                 <h3>In this section, we attempt to see if the level of education of a country is indicative of life
                     expectancy of said country.
                     In order to do so, we explore the primary school education attainment of a country and the tertiary
@@ -770,7 +770,7 @@ include 'sub_page_sidebar.html';
                 </div>
                 <h3></h3>
             </div>
-            <div class="general fade-in tab_me">
+            <div class="general tab_me">
                 <h3>Overall, all years tended to trend such that the countries that had higher life expectancies could
                     also expect to be in the upper half to a third in the list of countries ranked by educational
                     attainment and tertiary school enrollment.

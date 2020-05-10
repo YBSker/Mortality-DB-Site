@@ -86,7 +86,7 @@ include 'sub_page_sidebar.html';
     <div class="image-container2">
         <div class="sub_page_spacing">
             <h1 class="tab_title" style="color: #87CEFA;">Life Expectancy and Government Quality</h1>
-            <div class="general fade-in tab_me">
+            <div class="general tab_me">
                 <h3>In this section, we look at the quality of government and its correlation with life expectancy of
                     its people.
                     The primary indicators of government quality that we have selected are government confidence and
@@ -217,7 +217,7 @@ include 'sub_page_sidebar.html';
                 </div>
             </div>
 
-            <div class="general fade-in tab_me">
+            <div class="general tab_me">
                 <h3>Overall, it seemed as though countries with higher average life expectancies also had lower
                     confidence in their governments and residents observed more cases of corruption within their
                     government. The opposite seemed to hold for those countries with the bottom 10 average life
@@ -232,7 +232,7 @@ include 'sub_page_sidebar.html';
 
 
             <h1 class="tab_title" style="color: #87CEFA;">Happiness and Violent Deaths</h1>
-            <div class="general fade-in tab_me">
+            <div class="general tab_me">
                 <h3>In this section, we look at the rate of homicides and the happiness index of various countries in
                     order to get an idea of the relation between the happiness of a country and the rate at which murder
                     is committed upon a population out of 136 available data points.
@@ -342,7 +342,7 @@ include 'sub_page_sidebar.html';
                 </div>
             </div>
 
-            <div class="general fade-in tab_me">
+            <div class="general tab_me">
                 <h3>In general, it would appear that happier countries have lower homicide rates. Other than a few
                     notable exceptions (such as Burundi with a bottom 10 homicide rate and a bottom 10 happiness index),
                     most countries seemed to follow this trend. Interestingly, countries that rated lower on the
@@ -356,7 +356,7 @@ include 'sub_page_sidebar.html';
 
 
             <h1 class="tab_title" style="color: #87CEFA;">GDP and Suicide</h1>
-            <div class="general fade-in tab_me">
+            <div class="general tab_me">
                 <h3>In this section, we look at the rate of suicide and compare it to logGDP of a country in order to
                     check for a
                     correlation positive or negative between the two.
@@ -466,11 +466,14 @@ include 'sub_page_sidebar.html';
                 </div>
             </div>
 
-            <div class="general fade-in tab_me">
+            <div class="general tab_me">
                 <h3>There appeared to be a wide range of correspondence between suicide rates and logGDP.
                 However, there seemed to be a slight trend towards higher GDPs and higher suicide rates.
                 Nothing was obviously conclusive, however, and there seemed to be outliers in both directions
                 for all sets of data. </h3>
+                <h3>Click above to get data on specific sets!</h3>
+            </div>
+            <div class="general tab_me">
                 <h3>Click above to get data on specific sets!</h3>
             </div>
         </div>

@@ -55,7 +55,7 @@ include 'sub_page_sidebar.html';
     <div class="image-container2">
         <div class="sub_page_spacing">
             <h1 class="tab_title" style="color: #87CEFA;">Expenditures and Likelihood of Various Forms of Death</h1>
-            <div class="general fade-in tab_me">
+            <div class="general tab_me">
                 <h3>In this section, we attempt to look at three possible causes of death:
                     deaths related to cardiovascular disease, vehicular accidents, and homicide. Cardiovascular
                     disease was chosen as it is both the number one cause of death and the number one cause of natural
@@ -342,7 +342,7 @@ include 'sub_page_sidebar.html';
                     able to spend preventative medications in the case of cardiovascular disease and to afford emergency
                     treatments for homicides and vehicular accidents. </h3>
             </div>
-            <div class="general fade-in tab_me">
+            <div class="general tab_me">
                 <h3>Overall, based purely on our data sources, it would seem that more spending by a country and
                     households on healthcare corresponds
                     to a higher rate of cardiovascular death. The country data would seem to be skewed, as there is some
@@ -362,7 +362,7 @@ include 'sub_page_sidebar.html';
 
             <h1 class="tab_title" style="color: #87CEFA;">Wealth of a Country and Relation to the Cost of Death</h1>
 
-            <div class="general fade-in tab_me">
+            <div class="general tab_me">
                 <h3>In this section, we attempt to look at three general levels of a country's wealth- low, mid, and
                     high based on data from the WHO.
                     We will be looking at a country's costs on affording healthcare compared to the rates of death
@@ -546,7 +546,7 @@ include 'sub_page_sidebar.html';
                     We also observe an average incidence of normal weight BMIs and a much lower than average life
                     expectancy, though in the upper half of their own bracket.</h3>
             </div>
-            <div class="general fade-in tab_me">
+            <div class="general tab_me">
                 <h3>Overall, based purely on our data sources and separated by country income, it would seem that more
                     spending by a country on their member's healthcare
                     is not indicative of a lower chance of cardiovascular death. However, within each we can note BMI
