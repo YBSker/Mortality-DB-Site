@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS CausesOfDeathPercent;
 
 CREATE TABLE LifeExpectancyCountry (
                                        countryName  VARCHAR(20),
-                                       theYear     YEAR,
+                                       theYear     DECIMAL(4,0),
                                        lifeExpectancy FLOAT,
                                        PRIMARY KEY(countryName, theYear)
 );
