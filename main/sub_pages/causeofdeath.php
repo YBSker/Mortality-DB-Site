@@ -9,11 +9,11 @@ function outputResultsTableHeader()
 {
     echo "<tr>";
     echo "<th>  </th>";
-    echo "<th> State </th>";
-    echo "<th> Population</th>";
-    echo "<th> Total Prisoners</th>";
-    echo "<th> Incarceration Rate</th>";
-    echo "<th> Life Expectancy</th>";
+    echo "<th> Country </th>";
+    echo "<th> Total Movies</th>";
+    echo "<th> Total Action Movies</th>";
+    echo "<th> Rate of Action Movies</th>";
+    echo "<th> Rate of Homicide as Cause of Death</th>";
     echo "</tr>";
 }
 
@@ -44,24 +44,29 @@ include 'sub_page_sidebar.html';
         <div class="sub_page_spacing">
             <h1 style="color: #87CEFA;">Crime Rate and Life Expectancy</h1>
             <div class="general fade-in tab_me">
-                <h3>In this section, we look at whether or not a state's incarceration rate has any correlation
-                    with the state's average life expectancy. Data in this section is from 2016 and collected from the Bureau of Justice and the CDC.</h3>
+                <h3>In this section, we look at whether or not the proportion of action movies to total movies a country produces
+                    is correlated with average proportion of deaths in that country that are categorized as homicide, as action is the genre
+                    with the highest frequency of violent scenes.
+                    Data in this section is and collected from <a href="https://www.kaggle.com/danielgrijalvas/movies"> IMDb </a>and <a
+                            href="https://ourworldindata.org/homicides"> ourworldindata.org.<a/></h3>
             </div>
 
-            <button type="button" class="collapsible">Do Crime Rates Correlate with Life Expectancy?
+            <button type="button" class="collapsible">Do Action Movies Make People Violent?
             </button>
             <div class="content general fade-in tab_me">
-                <h2>Top 10 States by Incarceration Rate</h2>
+                <h2>Top 10 Countries By Action Movie Production</h2>
                 <div class="general fade-in">
                     <?php
-                    $sql = "SELECT LOWER(jurisdiction) AS state, 
-                            statePopulation,
-                            prisonerCount,
-                            prisonerCount / statePopulation AS rate,
-                            lifeExpectancy AS le
-                            FROM Crimes
-                            INNER JOIN LifeExpectancyState ON LOWER(LifeExpectancyState.stateName) = LOWER(Crimes.jurisdiction) AND Crimes.theYear = '2016-01-01' AND LifeExpectancyState.countyName = '(blank)'         
-                            ORDER BY rate DESC
+                    $sql = "SELECT country, 
+                            COUNT(*) AS num, 
+                            sum(case when genre = 'Action' then 1 else 0 end) AS com,
+                            sum(case when genre = 'Action' then 1 else 0 end) / COUNT(*) AS rate,    
+                            average_homicide AS hom
+                            FROM Movies
+                            INNER JOIN perCountryDataCoDHealth ON perCountryDataCoDHealth.countryName = Movies.country
+                            GROUP BY country
+                            HAVING COUNT(*) > 9
+                            ORDER BY hom DESC                            
                             ";
                     $result = $mysqli->query($sql);
                     if ($result->num_rows > 0) {
@@ -71,11 +76,11 @@ include 'sub_page_sidebar.html';
                             $row = $result->fetch_assoc();
                             echo "<tr>";
                             echo "<td>$i</td>";
-                            echo "<td>" . $row["state"] . "</td>";
-                            echo "<td>" . $row["statePopulation"] . "</td>";
-                            echo "<td>" . $row["prisonerCount"] . "</td>";
+                            echo "<td>" . $row["country"] . "</td>";
+                            echo "<td>" . $row["num"] . "</td>";
+                            echo "<td>" . $row["com"] . "</td>";
                             echo "<td>" . $row["rate"] . "</td>";
-                            echo "<td>" . $row["le"] . "</td>";
+                            echo "<td>" . $row["hom"] . "</td>";
                             echo "</tr>";
                         }
                     } else {
@@ -84,17 +89,19 @@ include 'sub_page_sidebar.html';
                     echo "</table>";
                     ?>
                 </div>
-                <h2>Bottom 10 Countries by Incarceration Rate</h2>
+                <h2>Bottom 10 Countries by Action Movie Production</h2>
                 <div class="general fade-in">
                     <?php
-                    $sql = "SELECT LOWER(jurisdiction) AS state, 
-                            statePopulation,
-                            prisonerCount,
-                            prisonerCount / statePopulation AS rate,
-                            lifeExpectancy AS le
-                            FROM Crimes
-                            INNER JOIN LifeExpectancyState ON LOWER(LifeExpectancyState.stateName) = LOWER(Crimes.jurisdiction) AND Crimes.theYear = '2016-01-01' AND LifeExpectancyState.countyName = '(blank)'         
-                            ORDER BY rate ASC
+                    $sql = "SELECT country, 
+                            COUNT(*) AS num, 
+                            sum(case when genre = 'Action' then 1 else 0 end) AS com,
+                            sum(case when genre = 'Action' then 1 else 0 end) / COUNT(*) AS rate,    
+                            average_homicide AS hom
+                            FROM Movies
+                            INNER JOIN perCountryDataCoDHealth ON perCountryDataCoDHealth.countryName = Movies.country
+                            GROUP BY country
+                            HAVING COUNT(*) > 9
+                            ORDER BY hom ASC                            
                             ";
                     $result = $mysqli->query($sql);
                     if ($result->num_rows > 0) {
@@ -104,11 +111,11 @@ include 'sub_page_sidebar.html';
                             $row = $result->fetch_assoc();
                             echo "<tr>";
                             echo "<td>$i</td>";
-                            echo "<td>" . $row["state"] . "</td>";
-                            echo "<td>" . $row["statePopulation"] . "</td>";
-                            echo "<td>" . $row["prisonerCount"] . "</td>";
+                            echo "<td>" . $row["country"] . "</td>";
+                            echo "<td>" . $row["num"] . "</td>";
+                            echo "<td>" . $row["com"] . "</td>";
                             echo "<td>" . $row["rate"] . "</td>";
-                            echo "<td>" . $row["le"] . "</td>";
+                            echo "<td>" . $row["hom"] . "</td>";
                             echo "</tr>";
                         }
                     } else {
@@ -120,110 +127,16 @@ include 'sub_page_sidebar.html';
             </div>
             <div class="general fade-in tab_me">
                 <h3>We looked
-                    at top 10 and bottom 10 countries by incarceration rate. Just from the
-                    eyeball test, it seems like states with a lower incarceration rate have a slight higher average life expectancy, but a
-                    more rigorous statistical test can be used to confirm this. As such, the data seems to suggest that low incarceration rates
-                    may be correlated with higher life expectancies.<br/>
+                    at top 10 and bottom 10 countries by proportion of total movies produced that are action movies. Just from the
+                    eyeball test, it's hard to see any meaningful pattern, but the countries producing proportionately less action movies
+                    do seem to have a lower rate of homicide, though you should take that with a grain of salt without rigorous statistical
+                    analysis to back it up.<br/>
 
                 </h3>
                 <h3>Click above to get data and analysis on specific sections!</h3>
 
-                <a href="https://www.kaggle.com/christophercorrea/prisoners-and-crime-in-united-states">Crime and Incarceration Data</a>
-                <br/>
-                <a href="https://www.cdc.gov/nchs/data-visualization/life-expectancy/">Life Expectancy Data</a>
             </div>
         </div>
-
-        <h1 style="color: #87CEFA;">Crime Rate and Life Expectancy</h1>
-        <div class="general fade-in tab_me">
-            <h3>In this section, we look at whether or not a state's violent crime rate has any correlation
-                with the state's average life expectancy. Data in this section is from 2016 and collected from the Bureau of Justice and the CDC.</h3>
-        </div>
-
-        <button type="button" class="collapsible">Do Crime Rates Correlate with Life Expectancy?
-        </button>
-        <div class="content general fade-in tab_me">
-            <h2>Top 10 States by Incarceration Rate</h2>
-            <div class="general fade-in">
-                <?php
-                $sql = "SELECT LOWER(jurisdiction) AS state, 
-                            statePopulation,
-                            violentCrimeTotal,
-                            violentCrimeTotal / statePopulation AS rate,
-                            lifeExpectancy AS le
-                            FROM Crimes
-                            INNER JOIN LifeExpectancyState ON LOWER(LifeExpectancyState.stateName) = LOWER(Crimes.jurisdiction) AND Crimes.theYear = '2016-01-01' AND LifeExpectancyState.countyName = '(blank)'         
-                            ORDER BY rate DESC
-                            ";
-                $result = $mysqli->query($sql);
-                if ($result->num_rows > 0) {
-                    echo "<table border=\"1px solid black\">";
-                    outputResultsTableHeader_b();
-                    for ($i = 1; $i < 11; $i++) {
-                        $row = $result->fetch_assoc();
-                        echo "<tr>";
-                        echo "<td>$i</td>";
-                        echo "<td>" . $row["state"] . "</td>";
-                        echo "<td>" . $row["statePopulation"] . "</td>";
-                        echo "<td>" . $row["violentCrimeTotal"] . "</td>";
-                        echo "<td>" . $row["rate"] . "</td>";
-                        echo "<td>" . $row["le"] . "</td>";
-                        echo "</tr>";
-                    }
-                } else {
-                    echo "0 results";
-                }
-                echo "</table>";
-                ?>
-            </div>
-            <h2>Bottom 10 Countries by Incarceration Rate</h2>
-            <div class="general fade-in">
-                <?php
-                $sql = "SELECT LOWER(jurisdiction) AS state, 
-                            statePopulation,
-                            violentCrimeTotal,
-                            violentCrimeTotal / statePopulation AS rate,
-                            lifeExpectancy AS le
-                            FROM Crimes
-                            INNER JOIN LifeExpectancyState ON LOWER(LifeExpectancyState.stateName) = LOWER(Crimes.jurisdiction) AND Crimes.theYear = '2016-01-01' AND LifeExpectancyState.countyName = '(blank)'         
-                            ORDER BY rate ASC
-                            ";
-                $result = $mysqli->query($sql);
-                if ($result->num_rows > 0) {
-                    echo "<table border=\"1px solid black\">";
-                    outputResultsTableHeader_b();
-                    for ($i = 1; $i < 11; $i++) {
-                        $row = $result->fetch_assoc();
-                        echo "<tr>";
-                        echo "<td>$i</td>";
-                        echo "<td>" . $row["state"] . "</td>";
-                        echo "<td>" . $row["statePopulation"] . "</td>";
-                        echo "<td>" . $row["violentCrimeTotal"] . "</td>";
-                        echo "<td>" . $row["rate"] . "</td>";
-                        echo "<td>" . $row["le"] . "</td>";
-                        echo "</tr>";
-                    }
-                } else {
-                    echo "0 results";
-                }
-                echo "</table>";
-                ?>
-            </div>
-        </div>
-        <div class="general fade-in tab_me">
-            <h3>We looked
-                at top 10 and bottom 10 countries by violent crime per capita. Just from the
-                eyeball test, it's hard to see a pattern. More rigorous statistical tests would provide a better conclusion, especially given
-                that the large amount of data makes seemingly smaller differences in averages more significant.<br/>
-
-            </h3>
-            <h3>Click above to get data and analysis on specific sections!</h3>
-
-            <a href="https://www.kaggle.com/christophercorrea/prisoners-and-crime-in-united-states">Crime and Incarceration Data</a>
-            <br/>
-            <a href="https://www.cdc.gov/nchs/data-visualization/life-expectancy/">Life Expectancy Data</a>
-        </div>
-    </div>
 
 
     <script src="sub_page_scripts.js"></script>

@@ -43,9 +43,10 @@ include 'sub_page_sidebar.html';
             <h1 style="color: #87CEFA;">Movie Preferences and Life Expectancy</h1>
             <div class="general fade-in tab_me">
                 <h3>In this section, we look at whether or not a country's movie preferences has any correlation
-                    with the country's average life expectancy. Data in this
-                    section
-                    is collected from the WHO and IMDb.</h3>
+                    with the country's average life expectancy. Data in this section
+                    is collected from the <a href="https://www.kaggle.com/kumarajarshi/life-expectancy-who">WHO</a>
+                    and <a href="https://www.kaggle.com/danielgrijalvas/movies">IMDb</a>.</h3>
+
             </div>
 
             <button type="button" class="collapsible">Is Laughter The Best Medicine?
@@ -292,16 +293,15 @@ include 'sub_page_sidebar.html';
 
                 <h3>Click above to get data and analysis on specific sections!</h3>
 
-                <a href="https://www.kaggle.com/danielgrijalvas/movies">Movie Data</a>
-                <br/>
-                <a href="https://www.kaggle.com/kumarajarshi/life-expectancy-who">Life Expectancy Data</a>
             </div>
 
             <h1 style="color: #87CEFA;">Movie Ratings and Happiness</h1>
 
             <div class="general fade-in tab_me">
                 <h3>In this section, we look at whether or not there's a correlation between average movie ratings for a
-                    country and that country's happiness index.</h3>
+                    country and that country's happiness index. Data is collected from the
+                    <a href="https://data.world/laurel/world-happiness-report-data">World Happiness Report</a>
+                    and <a href="https://www.kaggle.com/danielgrijalvas/movies">IMDb</a>.</h3>
             </div>
 
             <button type="button" class="collapsible">Do Better Movies Mean Better Living?
@@ -376,9 +376,7 @@ include 'sub_page_sidebar.html';
             <div class="general fade-in tab_me">
                 <h3></h3>
                 <h3>Click above to get data and analysis on specific sections!</h3>
-                <a href="https://www.kaggle.com/danielgrijalvas/movies">Movie Data</a>
-                <br/>
-                <a href="https://data.world/laurel/world-happiness-report-data">Happiness Data</a>
+
             </div>
 
         </div>

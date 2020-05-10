@@ -42,13 +42,16 @@ include 'sub_page_sidebar.html';
 
     <div class="image-container2">
         <div class="sub_page_spacing">
-            <h1 style="color: #87CEFA;">Crime Rate and Life Expectancy</h1>
+            <h1 style="color: #87CEFA;">Incarceration Rate and Life Expectancy</h1>
             <div class="general fade-in tab_me">
                 <h3>In this section, we look at whether or not a state's incarceration rate has any correlation
-                    with the state's average life expectancy. Data in this section is from 2016 and collected from the Bureau of Justice and the CDC.</h3>
+                    with the state's average life expectancy. Data in this section is from 2016 and collected from the
+                    <a href="https://www.kaggle.com/christophercorrea/prisoners-and-crime-in-united-states">Bureau of Justice</a>
+                    and the
+                    <a href="https://www.cdc.gov/nchs/data-visualization/life-expectancy/">CDC</a>.</h3>
             </div>
 
-            <button type="button" class="collapsible">Do Crime Rates Correlate with Life Expectancy?
+            <button type="button" class="collapsible">Does Incarceration Rate Correlate with Life Expectancy?
             </button>
             <div class="content general fade-in tab_me">
                 <h2>Top 10 States by Incarceration Rate</h2>
@@ -128,22 +131,21 @@ include 'sub_page_sidebar.html';
                 </h3>
                 <h3>Click above to get data and analysis on specific sections!</h3>
 
-                <a href="https://www.kaggle.com/christophercorrea/prisoners-and-crime-in-united-states">Crime and Incarceration Data</a>
-                <br/>
-                <a href="https://www.cdc.gov/nchs/data-visualization/life-expectancy/">Life Expectancy Data</a>
             </div>
     </div>
 
-        <h1 style="color: #87CEFA;">Crime Rate and Life Expectancy</h1>
+        <h1 style="color: #87CEFA;">Violent Crime Rate and Life Expectancy</h1>
         <div class="general fade-in tab_me">
             <h3>In this section, we look at whether or not a state's violent crime rate has any correlation
-                with the state's average life expectancy. Data in this section is from 2016 and collected from the Bureau of Justice and the CDC.</h3>
+                with the state's average life expectancy. Data in this section is from 2016 and collected from the <a href="https://www.kaggle.com/christophercorrea/prisoners-and-crime-in-united-states">Bureau of Justice</a>
+                and the
+                <a href="https://www.cdc.gov/nchs/data-visualization/life-expectancy/">CDC</a>.</h3>
         </div>
 
-        <button type="button" class="collapsible">Do Crime Rates Correlate with Life Expectancy?
+        <button type="button" class="collapsible">Do Violent Crime Rates Correlate with Life Expectancy?
         </button>
         <div class="content general fade-in tab_me">
-            <h2>Top 10 States by Incarceration Rate</h2>
+            <h2>Top 10 States by Violent Crime Rate</h2>
             <div class="general fade-in">
                 <?php
                 $sql = "SELECT LOWER(jurisdiction) AS state, 
@@ -176,7 +178,7 @@ include 'sub_page_sidebar.html';
                 echo "</table>";
                 ?>
             </div>
-            <h2>Bottom 10 Countries by Incarceration Rate</h2>
+            <h2>Bottom 10 Countries by Violent Crime Rate</h2>
             <div class="general fade-in">
                 <?php
                 $sql = "SELECT LOWER(jurisdiction) AS state, 
