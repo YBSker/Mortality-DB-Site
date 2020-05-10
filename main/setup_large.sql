@@ -32,7 +32,7 @@ CREATE TABLE LifeExpectancyCountry (
 
 CREATE TABLE Movies (
                         movieName  VARCHAR(20),
-                        theYear     YEAR,
+                        theYear     DECIMAL(4,0),
                         genre VARCHAR(15),
                         country VARCHAR(20),
                         IMDBScore FLOAT,
