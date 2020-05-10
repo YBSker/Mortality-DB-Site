@@ -42,7 +42,7 @@ include 'sub_page_sidebar.html';
 
     <div class="image-container2">
         <div class="sub_page_spacing">
-            <h1 style="color: #87CEFA;">Incarceration Rate and Life Expectancy</h1>
+            <h1 class="tab_title" style="color: #87CEFA;">Incarceration Rate and Life Expectancy</h1>
             <div class="general fade-in tab_me">
                 <h3>In this section, we look at whether or not a state's incarceration rate has any correlation
                     with the state's average life expectancy. Data in this section is from 2016 and collected from the
@@ -132,9 +132,9 @@ include 'sub_page_sidebar.html';
                 <h3>Click above to get data and analysis on specific sections!</h3>
 
             </div>
-    </div>
 
-        <h1 style="color: #87CEFA;">Violent Crime Rate and Life Expectancy</h1>
+
+        <h1 class="tab_title" style="color: #87CEFA;">Violent Crime Rate and Life Expectancy</h1>
         <div class="general fade-in tab_me">
             <h3>In this section, we look at whether or not a state's violent crime rate has any correlation
                 with the state's average life expectancy. Data in this section is from 2016 and collected from the <a href="https://www.kaggle.com/christophercorrea/prisoners-and-crime-in-united-states">Bureau of Justice</a>
@@ -226,7 +226,7 @@ include 'sub_page_sidebar.html';
             <a href="https://www.cdc.gov/nchs/data-visualization/life-expectancy/">Life Expectancy Data</a>
         </div>
     </div>
-
+    </div>
 
     <script src="sub_page_scripts.js"></script>
 
