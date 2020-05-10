@@ -54,7 +54,7 @@ include 'sub_page_sidebar.html';
 
     <div class="image-container2">
         <div class="sub_page_spacing">
-            <h1 style="color: #87CEFA;">Expenditures and Likelihood of Various Forms of Death</h1>
+            <h1 class="tab_title" style="color: #87CEFA;">Expenditures and Likelihood of Various Forms of Death</h1>
             <div class="general fade-in tab_me">
                 <h3>In this section, we attempt to look at three possible causes of death:
                     deaths related to cardiovascular disease, vehicular accidents, and homicide. Cardiovascular
@@ -359,7 +359,7 @@ include 'sub_page_sidebar.html';
                 <h3>Click above to get data and analysis on specific sections!</h3>
             </div>
 
-            <h1 style="color: #87CEFA;">Wealth of a Country and Relation to the Cost of Death</h1>
+            <h1 class="tab_title" style="color: #87CEFA;">Wealth of a Country and Relation to the Cost of Death</h1>
 
             <div class="general fade-in tab_me">
                 <h3>In this section, we attempt to look at three general levels of a country's wealth- low, mid, and
@@ -534,6 +534,7 @@ include 'sub_page_sidebar.html';
                         echo "0 results";
                     }
                     echo "</table>";
+                    mysqli_close($mysqli);
                     ?>
                 </div>
                 <h3>Within the lower income countries, we can see some of the highest spending (out of 26) for the

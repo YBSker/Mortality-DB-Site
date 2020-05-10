@@ -21,13 +21,19 @@
     top: 12%; /* Position text in the middle */
     left: 4%; /* Position text in the middle */
     font-family: 'PT Sans', sans-serif;;
-    text-align: center;
+    text-align: left;
     width: 80%;
 }
 
 .tab_me {
     position:relative;
     left:5%;
+    text-align: left;
+}
+
+.tab_title {
+    position:relative;
+    left:17%;
     text-align: left;
 }
 
