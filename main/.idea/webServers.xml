@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="826dc7d4-4041-4346-b3f5-208f04402194" name="ugradx">
+        <fileTransfer accessType="SFTP" host="ugradx.cs.jhu.edu" port="22" sshConfigId="1e32c620-ce22-4c52-9526-13afcf13884d" sshConfig="schu17@ugradx.cs.jhu.edu:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

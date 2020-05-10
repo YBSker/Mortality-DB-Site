@@ -1,13 +1,27 @@
+html, body { /* ensure the available document space is the full height of the viewport */
+    height: 100%;
+    padding: 0;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+}
+
 /*SideNav CSS*/
 .sidenav {
     height: 100%;
-    width: 225px;
+    /*width: 225px;*/
     position: fixed;
-    /*width: 12vw;*/
-    /*position: absolute;*/
+    width: 12vw;
+    /*position: -webkit-sticky;*/
+    /*position: sticky;*/
+    /*top: 0;*/
     z-index: 1;
-    top: 0;
     left: 0;
+    top:0;
+    bottom: 0;
     background-color: #191919;
     overflow-x: hidden;
     padding-top: 25px;
@@ -35,7 +49,7 @@
 
 .general {
     /*YOU WILL BASICALLY NEED THIS MARGIN-LEFT EVERYWHERE SO YOU DO NOT GET COVERED BY THE BAR*/
-    margin-left: 225px;/* Same as the width of the sidenav */
+    margin-left: 12vw;/* Same as the width of the sidenav */
     font-family: "Nunito Sans",sans-serif!important;
     color:#fff;
 }
@@ -44,12 +58,18 @@
     /*background-image: url("https://wpamelia.com/wp-content/uploads/2019/02/astronomy-constellation-dark-998641.jpg");*/
     background-image: url("https://images.alphacoders.com/935/935315.png");
     /* Full height */
-    height: 100%;
-
+    /*height: 100%;*/
     /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
+    /*background-position: center;*/
     background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+    /*background-repeat: no-repeat;*/
+    /*background-size: cover;*/
+    /*background-attachment: scroll;*/
+    /*overflow-x: scroll;*/
+    /*overflow: visible;*/
 }
 
 .image-container2 {

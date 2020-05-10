@@ -1,0 +1,65 @@
+.sub_page_title {
+    background-color: #e3e3e3;
+    color: black;
+    font-size: 4vw; /* Responsive font size */
+    font-weight: bold;
+    margin: 0 auto; /* Center the text container */
+    padding: 0px;
+    width: 100%;
+    position: absolute; /* Position text */
+    top: 50px; /* Position text in the middle */
+    left: 55%; /* Position text in the middle */
+    transform: translate(-50%, -50%); /* Position text in the middle */
+    mix-blend-mode: screen; /* This makes the cutout text possible */
+    font-family: 'PT Sans', sans-serif;;
+}
+
+.sub_page_spacing {
+    font-size: 1vw; /* Responsive font size */
+    font-weight: normal;
+    position: absolute; /* Position text */
+    top: 12%; /* Position text in the middle */
+    left: 4%; /* Position text in the middle */
+    font-family: 'PT Sans', sans-serif;;
+    text-align: center;
+    width: 80%;
+}
+
+.tab_me {
+    position:relative;
+    left:5%;
+    text-align: left;
+}
+
+.untab_me {
+    position:relative;
+    left:-100px;
+    text-align: left;
+    background-color: red;
+}
+
+/* Style the button that is used to open and close the collapsible content */
+.collapsible {
+    position:relative;
+    left:18%;
+    color: #87CEFA;
+    cursor: pointer;
+    /*padding: 18px;*/
+    width: 100%;
+    border: none;
+    background: none;
+    text-align: left;
+    outline: none;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 1.1vw;
+    font-weight: bold;
+}
+
+.collapsible:hover {
+    color: grey;
+}
+
+.content {
+    display: none;
+    overflow: hidden;
+}
