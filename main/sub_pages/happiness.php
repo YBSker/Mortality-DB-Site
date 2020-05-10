@@ -473,9 +473,6 @@ include 'sub_page_sidebar.html';
                 for all sets of data. </h3>
                 <h3>Click above to get data on specific sets!</h3>
             </div>
-            <div class="general tab_me">
-                <h3>Click above to get data on specific sets!</h3>
-            </div>
         </div>
 
 
